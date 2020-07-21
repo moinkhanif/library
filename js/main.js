@@ -29,6 +29,11 @@ let render = () => {
         <footer class="blockquote-footer"><cite title="Source Title">${book.author}</cite></footer>
       </blockquote>
       <a href=# class="bookDelete" data-index=${index}><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+      <!-- Default switch -->
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitches">
+        <label class="custom-control-label" for="customSwitches">Toggle this switch element</label>
+      </div>
     </div>
   </div>
   </div>
@@ -49,7 +54,17 @@ let render = () => {
 
     });
   }
+
+  document.querySelector('.custom-control-input').addEventListener('click', () =>{
+    let index = document.querySelector('.custom-control-input').getAttribute("data-index");
+    if(document.querySelector('.custom-control-input').checked = true){
+      
+    }
+  })
+
 }
+
+
 
 let bookInput = (author,title,pages,read) => {
   event.preventDefault();
@@ -85,7 +100,7 @@ let renderForm = () => {
   </div>
 
   <div class="form-check">
-  <input type="radio" class="form-check-input" id="read" value='false' name="read">
+  <input type="radio" class="form-check-input" id="read" value='false' name="read" checked>
   <label class="form-check-label" for="read">Not Read</label>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
@@ -100,14 +115,6 @@ let renderForm = () => {
 // display
 
 document.getElementById('new-book').addEventListener('click', () => {
-
-
   renderForm();
-  // let newBook = prompt("Please enter the book name:");
-  // if (newBook != null) {
-  //   addBooksToLibrary(newBook);
-  //   alert('New Book has been added!');
-  //   render();
-  // }
 })
 
