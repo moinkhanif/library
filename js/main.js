@@ -1,22 +1,18 @@
-let myLibrary = [];
+const myLibrary = [];
 
-function Book(author,title,pages,read) {
+function Book(author, title, pages, read) {
   this.author = author;
   this.title = title;
   this.pages = pages;
   this.read = read;
 }
 
-let addBooksToLibrary = (bookName) => {
-  myLibrary.push(bookName);
-}
+const render = () => {
+  let displayValues = '';
 
-let render = () => {
-
-  let displayValues = ''
-
+  // eslint-disable-next-line no-plusplus
   for (let index = 0; index < myLibrary.length; index++) {
-    let book = myLibrary[index];
+    const book = myLibrary[index];
     displayValues += `
     <div class="col-md-6">
     <div class="card">
@@ -35,51 +31,39 @@ let render = () => {
     </div>
   </div>
   </div>
-  `
+  `;
   }
 
   document.getElementById('books_display').innerHTML = displayValues;
-  let bookReads = document.querySelectorAll('.bookRead');
-  bookReads.forEach((el)=>{
-    if(el){
-      let index = el.getAttribute('data-index');
+  const bookReads = document.querySelectorAll('.bookRead');
+  bookReads.forEach((el) => {
+    if (el) {
+      const index = el.getAttribute('data-index');
       let button = '';
-      console.log(typeof myLibrary[index].read)
-      if(myLibrary[index].read === 'true'){
-        button = `<button type="button" class="btn btn-success">Read</button>`
-      }else {
-        button = `<button type="button" class="btn btn-danger">Unread</button>`
+      if (myLibrary[index].read === 'true') {
+        button = '<button type="button" class="btn btn-success">Read</button>';
+      } else {
+        button = '<button type="button" class="btn btn-danger">Unread</button>';
       }
       el.innerHTML = button;
     }
-  })
-  let booksDelete = document.querySelectorAll('.bookDelete');
-  booksDelete.forEach((el)=>{
-    if(el){
-      el.addEventListener('click',()=>{
-        
-        if(confirm("Are you sure you want to delete ")){
-          let index = el.getAttribute("data-index");
-          myLibrary.splice(index,1);
-          render();
-          
-        }
-          
-    
-        });
-      }
   });
-}
+  const booksDelete = document.querySelectorAll('.bookDelete');
+  booksDelete.forEach((el) => {
+    if (el) {
+      el.addEventListener('click', () => {
+        // eslint-disable-next-line no-restricted-globals
+        if (confirm('Are you sure you want to delete ')) {
+          const index = el.getAttribute('data-index');
+          myLibrary.splice(index, 1);
+          render();
+        }
+      });
+    }
+  });
+};
 
-let bookInput = (author,title,pages,read) => {
-  event.preventDefault();
-  let newBook = new Book(author,title,pages,read);
-  myLibrary.push(newBook);
-  renderForm();
-  render();
-}
-let renderForm = () => {
-
+const renderForm = () => {
   const form = `
 
   <form onsubmit='bookInput(this.author.value,this.title.value,this.pages.value,this.read.value);return false'>
@@ -109,13 +93,21 @@ let renderForm = () => {
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
   
-  `
-  document.getElementById('book-form').innerHTML = form
-}
+  `;
+  document.getElementById('book-form').innerHTML = form;
+};
+// eslint-disable-next-line no-unused-vars
+const bookInput = (author, title, pages, read) => {
+  // eslint-disable-next-line no-restricted-globals
+  event.preventDefault();
+  const newBook = new Book(author, title, pages, read);
+  myLibrary.push(newBook);
+  renderForm();
+  render();
+};
 
 // display
 
 document.getElementById('new-book').addEventListener('click', () => {
   renderForm();
-})
-
+});
