@@ -28,39 +28,56 @@ let render = () => {
         <p>This book has ${book.pages} pages ${book.read}</p>
         <footer class="blockquote-footer"><cite title="Source Title">${book.author}</cite></footer>
       </blockquote>
-      <a href=# class="bookDelete" data-index=${index}><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
-      <!-- Default switch -->
-      <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="customSwitches">
-        <label class="custom-control-label" for="customSwitches">Toggle this switch element</label>
+      <div data-index="${index}" class="bookRead">
+      
       </div>
+      <a href=# class="bookDelete" data-index=${index}><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
     </div>
   </div>
   </div>
   `
+
   }
 
-  document.getElementById('books_display').innerHTML = displayValues
-  if(document.querySelector('.bookDelete')){
-  document.querySelector('.bookDelete').addEventListener('click',()=>{
-    
-    if(confirm("Are you sure you want to delete ")){
-      let index = document.querySelector('.bookDelete').getAttribute("data-index");
-      myLibrary.splice(index,1);
-      render();
-      
-    }
-      
-
-    });
-  }
-
-  document.querySelector('.custom-control-input').addEventListener('click', () =>{
-    let index = document.querySelector('.custom-control-input').getAttribute("data-index");
-    if(document.querySelector('.custom-control-input').checked = true){
-      
+  document.getElementById('books_display').innerHTML = displayValues;
+  let bookReads = document.querySelectorAll('.bookRead');
+  bookReads.forEach((el)=>{
+    if(el){
+      let index = el.getAttribute('data-index');
+      let button = '';
+      console.log(typeof myLibrary[index].read)
+      if(myLibrary[index].read === 'true'){
+        button = `<button type="button" class="btn btn-success">Read</button>`
+      }else {
+        button = `<button type="button" class="btn btn-danger">Unread</button>`
+      }
+      el.innerHTML = button;
+     
     }
   })
+  let booksDelete = document.querySelectorAll('.bookDelete');
+  booksDelete.forEach((el)=>{
+    if(el){
+      el.addEventListener('click',()=>{
+        
+        if(confirm("Are you sure you want to delete ")){
+          let index = el.getAttribute("data-index");
+          myLibrary.splice(index,1);
+          render();
+          
+        }
+          
+    
+        });
+      }
+  });
+
+//   document.querySelector('.custom-control-input').addEventListener('click', () =>{
+//     let index = document.querySelector('.custom-control-input').getAttribute("data-index");
+//     if(document.querySelector('.custom-control-input').checked = true){
+      
+//     }
+//   })
 
 }
 
