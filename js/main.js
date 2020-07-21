@@ -36,7 +36,6 @@ let render = () => {
   </div>
   </div>
   `
-
   }
 
   document.getElementById('books_display').innerHTML = displayValues;
