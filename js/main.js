@@ -25,13 +25,13 @@ let render = () => {
     </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
-        <p>This book has ${book.pages} pages ${book.read}</p>
+        <p>This book has ${book.pages} pages </p>
         <footer class="blockquote-footer"><cite title="Source Title">${book.author}</cite></footer>
       </blockquote>
       <div data-index="${index}" class="bookRead">
       
       </div>
-      <a href=# class="bookDelete" data-index=${index}><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+      <a href=# class="bookDelete" data-index=${index}><i class="fa fa-trash fa-2x mt-4" aria-hidden="true"></i></a>
     </div>
   </div>
   </div>
@@ -71,17 +71,7 @@ let render = () => {
         });
       }
   });
-
-//   document.querySelector('.custom-control-input').addEventListener('click', () =>{
-//     let index = document.querySelector('.custom-control-input').getAttribute("data-index");
-//     if(document.querySelector('.custom-control-input').checked = true){
-      
-//     }
-//   })
-
 }
-
-
 
 let bookInput = (author,title,pages,read) => {
   event.preventDefault();
@@ -90,7 +80,6 @@ let bookInput = (author,title,pages,read) => {
   renderForm();
   render();
 }
-
 
 let renderForm = () => {
 
@@ -124,9 +113,7 @@ let renderForm = () => {
 </form>
   
   `
-
   document.getElementById('book-form').innerHTML = form
-
 }
 
 // display
