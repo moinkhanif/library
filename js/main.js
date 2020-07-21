@@ -78,7 +78,6 @@ let bookInput = (author,title,pages,read) => {
   renderForm();
   render();
 }
-
 let renderForm = () => {
 
   const form = `
