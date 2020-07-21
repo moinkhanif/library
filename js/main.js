@@ -51,7 +51,6 @@ let render = () => {
         button = `<button type="button" class="btn btn-danger">Unread</button>`
       }
       el.innerHTML = button;
-     
     }
   })
   let booksDelete = document.querySelectorAll('.bookDelete');
