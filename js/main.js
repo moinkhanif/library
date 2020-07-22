@@ -49,14 +49,12 @@ const render = () => {
     }
     el.addEventListener('click', () => {
       const index = el.getAttribute('data-index');
-      myLibrary[index].read = !myLibrary[index].read;
-      let button = '';
-      if (myLibrary[index].read === true) {
-        button = '<button type="button" class="btn btn-success">Read</button>';
+      if (myLibrary[index].read === 'true') {
+        myLibrary[index].read = 'false';
       } else {
-        button = '<button type="button" class="btn btn-danger">Unread</button>';
+        myLibrary[index].read = 'true';
       }
-      el.innerHTML = button;
+      render();
     });
   });
   const booksDelete = document.querySelectorAll('.bookDelete');
