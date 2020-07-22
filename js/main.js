@@ -47,6 +47,17 @@ const render = () => {
       }
       el.innerHTML = button;
     }
+    el.addEventListener('click', () => {
+      const index = el.getAttribute('data-index');
+      myLibrary[index].read = !myLibrary[index].read;
+      let button = '';
+      if (myLibrary[index].read === true) {
+        button = '<button type="button" class="btn btn-success">Read</button>';
+      } else {
+        button = '<button type="button" class="btn btn-danger">Unread</button>';
+      }
+      el.innerHTML = button;
+    });
   });
   const booksDelete = document.querySelectorAll('.bookDelete');
   booksDelete.forEach((el) => {
