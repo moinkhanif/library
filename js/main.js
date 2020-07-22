@@ -14,20 +14,20 @@ const render = () => {
   for (let index = 0; index < myLibrary.length; index++) {
     const book = myLibrary[index];
     displayValues += `
-    <div class="col-md-4">
+    <div class="col-md-4 mb-5">
     <div class="card">
     <div class="card-header">
       ${book.title}
     </div>
     <div class="card-body">
-      <blockquote class="blockquote mb-0">
+      <blockquote class="blockquote mb-4">
         <p>This book has ${book.pages} pages </p>
         <footer class="blockquote-footer"><cite title="Source Title">${book.author}</cite></footer>
       </blockquote>
-      <div data-index="${index}" class="bookRead">
-      
+      <div class="d-flex justify-content-between">
+        <div data-index="${index}" class="bookRead"></div>
+        <a href="#" class="bookDelete" data-index=${index}><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
       </div>
-      <a href=# class="bookDelete" data-index=${index}><i class="fa fa-trash fa-2x mt-4" aria-hidden="true"></i></a>
     </div>
   </div>
   </div>
@@ -51,9 +51,10 @@ const render = () => {
   const booksDelete = document.querySelectorAll('.bookDelete');
   booksDelete.forEach((el) => {
     if (el) {
-      el.addEventListener('click', () => {
+      el.addEventListener('click', (e) => {
         // eslint-disable-next-line no-restricted-globals
         if (confirm('Are you sure you want to delete ')) {
+          e.preventDefault();
           const index = el.getAttribute('data-index');
           myLibrary.splice(index, 1);
           render();
